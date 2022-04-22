@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group 'dev.gladio'
+version '0.0.1'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation files("${System.properties['JAVA_HOME']}/../libs/gladio-core.jar")
+}
+
+artifacts.archives(tasks.shadowJar)
+
+tasks.jar {
+    enabled = false
+}
+
+tasks.shadowJar {
+    archiveFileName.set(rootProject.name + "-" + version + ".jar")
+}

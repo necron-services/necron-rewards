@@ -1,0 +1,4 @@
+name: 'GladioRewards'
+author: 'Gladio'
+version: 0.0.1
+main: dev.gladio.GladioRewardPlugin
