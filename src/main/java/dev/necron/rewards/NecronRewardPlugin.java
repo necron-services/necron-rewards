@@ -1,8 +1,8 @@
-package dev.gladio.rewards;
+package dev.necron.rewards;
 
-import dev.gladio.GladioPlugin;
+import dev.necron.NecronPlugin;
 
-public class GladioRewardPlugin extends GladioPlugin {
+public class NecronRewardPlugin extends NecronPlugin {
 
     @Override
     public void whenEnabled() {
@@ -21,6 +21,6 @@ public class GladioRewardPlugin extends GladioPlugin {
 
     @Override
     public String getProduct() {
-        return "gladio_rewards_plugin";
+        return "necron_rewards_plugin";
     }
 }

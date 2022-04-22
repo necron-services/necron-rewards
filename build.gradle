@@ -3,18 +3,20 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-group 'dev.gladio'
-version '0.0.1'
+allprojects {
+    group 'dev.necron'
+    version '0.0.1'
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven { url "https://repo.codemc.org/repository/nms/" }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://repo.codemc.org/repository/nms/' }
+    }
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT")
-    implementation(files("${System.properties['JAVA_HOME']}/../libs/gladio-core.jar"))
+    compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+    implementation(files("${System.properties['JAVA_HOME']}/../libs/necron-core.jar"))
 }
 
 artifacts.archives(tasks.shadowJar)

@@ -1,4 +1,4 @@
-name: 'GladioRewards'
-author: 'Gladio'
+name: 'NecronRewards'
+author: 'Necron'
 version: 0.0.1
-main: dev.gladio.GladioRewardPlugin
+main: dev.necron.NecronRewardPlugin
