@@ -9,10 +9,12 @@ version '0.0.1'
 repositories {
     mavenLocal()
     mavenCentral()
+    maven { url "https://repo.codemc.org/repository/nms/" }
 }
 
 dependencies {
-    implementation files("${System.properties['JAVA_HOME']}/../libs/gladio-core.jar")
+    compileOnly("org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT")
+    implementation(files("${System.properties['JAVA_HOME']}/../libs/gladio-core.jar"))
 }
 
 artifacts.archives(tasks.shadowJar)
