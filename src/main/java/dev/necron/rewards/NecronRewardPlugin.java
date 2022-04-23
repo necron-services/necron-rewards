@@ -1,6 +1,6 @@
 package dev.necron.rewards;
 
-import dev.necron.NecronPlugin;
+import dev.necron.core.NecronPlugin;
 
 public class NecronRewardPlugin extends NecronPlugin {
 
@@ -12,15 +12,5 @@ public class NecronRewardPlugin extends NecronPlugin {
     @Override
     public void whenDisabled() {
 
-    }
-
-    @Override
-    public String getUserName() {
-        return "%%__USER__%%";
-    }
-
-    @Override
-    public String getProduct() {
-        return "necron_rewards_plugin";
     }
 }
