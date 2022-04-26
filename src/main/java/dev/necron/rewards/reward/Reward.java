@@ -1,4 +1,5 @@
 package dev.necron.rewards.reward;
+
 import com.hakan.core.particle.HParticle;
 import com.hakan.core.utils.HYaml;
 import dev.necron.rewards.gui.MenuItem;
@@ -6,23 +7,21 @@ import dev.necron.rewards.utils.RewardUtils;
 import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 public class Reward {
 
-        private final MenuItem readyMenuItem;
-        private final MenuItem cooldownMenuItem;
+    private final MenuItem readyMenuItem;
+    private final MenuItem cooldownMenuItem;
 
-        private final String permission;
-        private final int cooldown;
+    private final String permission;
+    private final int cooldown;
 
-        private final Sound sound;
-        private final HParticle particle;
+    private final Sound sound;
+    private final HParticle particle;
 
-        private final List<String> commands;
-        private final List<ItemStack> items;
+    private final List<String> commands;
+    private final List<ItemStack> items;
 
     public Reward(MenuItem readyMenuItem, MenuItem cooldownMenuItem, String permission, int cooldown, Sound sound, HParticle particle, List<String> commands, List<ItemStack> items) {
         this.readyMenuItem = readyMenuItem;
@@ -42,7 +41,7 @@ public class Reward {
         this.cooldown = yaml.getInt("settings.usage.cooldown");
         this.sound = Sound.valueOf(yaml.getString("settings.effects.sound"));
         this.particle = new HParticle(yaml.getString("settings.effects.particle"));
-        this.commands =yaml.getStringList("rewards.commands");
+        this.commands = yaml.getStringList("rewards.commands");
         this.items = RewardUtils.getItemStacksFromYaml(yaml);
     }
 

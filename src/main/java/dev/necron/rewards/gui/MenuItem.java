@@ -4,5 +4,6 @@ import com.hakan.core.utils.HYaml;
 
 public class MenuItem {
 
-    public MenuItem(HYaml yaml, String path) {}
+    public MenuItem(HYaml yaml, String path) {
+    }
 }

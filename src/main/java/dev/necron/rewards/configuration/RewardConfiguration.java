@@ -14,7 +14,7 @@ public class RewardConfiguration {
         CONFIG = HYaml.create(plugin, "config.yml", "config.yml");
 
         Iterator<File> it = FileUtils.iterateFiles(new File("plugins/NecronRewards/rewards"), null, false);
-        while(it.hasNext()){
+        while (it.hasNext()) {
             File rewardYaml = it.next();
 
         }
