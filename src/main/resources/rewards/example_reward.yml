@@ -1,0 +1,46 @@
+gui-item-cooldown:
+  material: DIAMOND
+  name: '&aExample Reward !'
+  glow: false
+  amount: 1
+  lore:
+    - '&aHello &f%player%'
+    - '&athis is an example reward'
+    - '&a which you can claim in %time%'
+
+
+gui-item-ready:
+  material: DIAMOND
+  name: '&aExample Reward !'
+  glow: false
+  amount: 1
+  lore:
+    - '&aHello &f%player%'
+    - '&athis is an example reward'
+    - '&a which you can claim NOW !'
+
+
+settings:
+  usage:
+    permission: 'rewards.examplereward'
+    cooldown: 1000 # second
+  effects:
+    particle: 'FLAME'
+    sound: 'ORB_PICKUP'
+
+
+rewards:
+  commands:
+    - 'say %player% took a reward'
+  items:
+    example-item:
+      material: DIAMOND
+      name: '&aExample Reward !'
+      nbt: '{}'
+      amount: 1
+      enchants:
+        - DAMAGE_ALL: 1
+      lore:
+        - '&aHello &f%player%'
+        - '&athis is an example reward'
+        - '&a which you can claim NOW !'
