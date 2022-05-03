@@ -1,31 +1,53 @@
 package dev.necron.rewards.utils;
 
 import com.hakan.core.item.HItemBuilder;
-import com.hakan.core.utils.HYaml;
+import dev.necron.rewards.configuration.RewardConfiguration;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.MemorySection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RewardUtils {
 
-    public static List<ItemStack> getItemStacksFromYaml(HYaml yaml) {
+    public static String colored(String string) {
+        return ChatColor.translateAlternateColorCodes('&', string);
+    }
+
+    public static List<ItemStack> getStacksFromYaml(RewardConfiguration configuration) {
         List<ItemStack> itemStackList = new ArrayList<>();
-        yaml.getConfigurationSection("rewards.items").getKeys(false)
-                .forEach(itemID -> itemStackList.add(getItemStacksFromYaml(yaml, itemID)));
+        configuration.get("rewards.items", MemorySection.class).getKeys(false)
+                .forEach(key -> itemStackList.add(getStackFromYaml(configuration, "rewards.items." + key)));
         return itemStackList;
     }
 
-    public static ItemStack getItemStacksFromYaml(HYaml yaml, String path) {
-        HItemBuilder itemBuilder = new HItemBuilder(Material.valueOf(yaml.getString("rewards.items." + path + ".material")))
-                .name(yaml.getString("rewards.items." + path + ".name"))
-                .nbt(yaml.getString("rewards.items." + path + ".nbt"))
-                .amount(yaml.getInt("rewards.items." + path + ".amount"))
-                .lores(true, yaml.getStringList("rewards.items." + path + ".lore"));
-        yaml.getConfigurationSection("rewards.items." + path + ".enchants").getKeys(false)
-                .forEach(key -> itemBuilder.addEnchant(Enchantment.getByName(key), yaml.getInt("rewards.items." + path + ".enchants." + key)));
+    public static ItemStack getStackFromYaml(RewardConfiguration configuration, String path) {
+        HItemBuilder itemBuilder = new HItemBuilder(Material.valueOf(configuration.get(path + ".type")))
+                .name(configuration.get(path + ".name"))
+                .nbt(configuration.get(path + ".nbt"))
+                .amount(configuration.get(path + ".amount"))
+                .glow(configuration.get(path + ".glow"))
+                .lores(true, configuration.get(path + ".lore"));
+        configuration.get(path + ".enchants", MemorySection.class).getKeys(false)
+                .forEach(key -> itemBuilder.addEnchant(Enchantment.getByName(key), configuration.get(path + ".enchants." + key)));
         return itemBuilder.build();
+    }
+
+    public static List<File> getFilesByPath(String path) {
+        List<File> files = new ArrayList<>();
+        File[] listOfFiles = new File(path).listFiles();
+
+        if (listOfFiles == null)
+            return files;
+
+        for (File file : listOfFiles)
+            if (file.getName().endsWith(".yml"))
+                files.add(file);
+
+        return files;
     }
 }

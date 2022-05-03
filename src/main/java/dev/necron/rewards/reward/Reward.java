@@ -1,8 +1,8 @@
 package dev.necron.rewards.reward;
 
 import com.hakan.core.particle.HParticle;
-import com.hakan.core.utils.HYaml;
-import dev.necron.rewards.gui.MenuItem;
+import dev.necron.rewards.configuration.RewardConfiguration;
+import dev.necron.rewards.gui.adapter.item.MenuItem;
 import dev.necron.rewards.utils.RewardUtils;
 import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
@@ -23,7 +23,14 @@ public class Reward {
     private final List<String> commands;
     private final List<ItemStack> items;
 
-    public Reward(MenuItem readyMenuItem, MenuItem cooldownMenuItem, String permission, int cooldown, Sound sound, HParticle particle, List<String> commands, List<ItemStack> items) {
+    public Reward(MenuItem readyMenuItem,
+                  MenuItem cooldownMenuItem,
+                  String permission,
+                  int cooldown,
+                  Sound sound,
+                  HParticle particle,
+                  List<String> commands,
+                  List<ItemStack> items) {
         this.readyMenuItem = readyMenuItem;
         this.cooldownMenuItem = cooldownMenuItem;
         this.permission = permission;
@@ -34,15 +41,15 @@ public class Reward {
         this.items = items;
     }
 
-    public Reward(HYaml yaml) {
-        this.readyMenuItem = new MenuItem(yaml, "gui-item-ready");
-        this.cooldownMenuItem = new MenuItem(yaml, "gui-item-cooldown");
-        this.permission = yaml.getString("settings.usage.permission");
-        this.cooldown = yaml.getInt("settings.usage.cooldown");
-        this.sound = Sound.valueOf(yaml.getString("settings.effects.sound"));
-        this.particle = new HParticle(yaml.getString("settings.effects.particle"));
-        this.commands = yaml.getStringList("rewards.commands");
-        this.items = RewardUtils.getItemStacksFromYaml(yaml);
+    public Reward(RewardConfiguration configuration) {
+        this.readyMenuItem = MenuItem.fromConfiguration(configuration, "gui-item-ready");
+        this.cooldownMenuItem = MenuItem.fromConfiguration(configuration, "gui-item-cooldown");
+        this.permission = configuration.get("settings.usage.permission");
+        this.cooldown = configuration.get("settings.usage.cooldown");
+        this.sound = Sound.valueOf(configuration.get("settings.effects.sound"));
+        this.particle = new HParticle(configuration.get("settings.effects.particle"));
+        this.commands = configuration.get("rewards.commands");
+        this.items = RewardUtils.getStacksFromYaml(configuration);
     }
 
     public MenuItem getReadyMenuItem() {
