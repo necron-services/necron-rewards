@@ -1,4 +1,4 @@
 name: 'NecronRewards'
 author: 'Necron'
 version: 0.0.1
-main: dev.necron.NecronRewardPlugin
+main: dev.necron.rewards.RewardPlugin

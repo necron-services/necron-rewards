@@ -3,16 +3,15 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-allprojects {
-    group 'dev.necron'
-    version '0.0.1'
+group 'dev.necron'
+version '0.0.1'
+sourceCompatibility = 1.8
 
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-        maven { url 'https://repo.codemc.org/repository/nms/' }
-    }
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://repo.codemc.org/repository/nms/' }
 }
 
 dependencies {
